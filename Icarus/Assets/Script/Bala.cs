@@ -16,7 +16,7 @@ public class Bala : MonoBehaviour
     void Kill()
     {
         DeathTime += Time.deltaTime;
-        if (DeathTime > 10f)
+        if (DeathTime > 6f)
             Destroy(gameObject);
     }
     void Move()

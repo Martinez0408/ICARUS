@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
     void Atirar()
     {
         FireTimer += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0) && FireTimer >= FireRate)
+        if ((Input.GetMouseButton(0)||(Input.GetKey(KeyCode.K))) && FireTimer >= FireRate)
 
         { GameObject novaBala = Instantiate(Tiro[0].gameObject, Spawn.transform.position, Spawn.transform.rotation);
 
