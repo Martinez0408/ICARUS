@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 8271096155879602861}
   - component: {fileID: 446988397418094982}
   - component: {fileID: 8223026063595248223}
+  - component: {fileID: 9061423437862480740}
+  - component: {fileID: -1186318082695657775}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Inimigo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,3 +110,45 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &9061423437862480740
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124394402925275042}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
+--- !u!114 &-1186318082695657775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124394402925275042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28522885b63251347ab948cf52026a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyShot: {fileID: 7025566002365091599, guid: 5a9e1381080346a4a88570d07da5f5dd, type: 3}
+  SpawnEnemy: {fileID: 9154130904049466876, guid: 0fdb5a598415497429d87b0867e2c8d0, type: 3}
+  ShotFrequency: 5

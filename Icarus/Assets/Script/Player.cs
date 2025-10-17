@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,20 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+
+
+    public void Derrota() //Oque acontece se o player morrer
+
+    {
+        gameObject.SetActive(false);
+        Invoke("VaiproMenu", 1f); //Demora 3 segundos pra mudar a scene
+    }
+
+    void VaiproMenu() //Muda a cena pra da de derrota
+    {
+        SceneManager.LoadScene("Lose");
     }
 
     void FixedUpdate()

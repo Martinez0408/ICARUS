@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bala : MonoBehaviour
 
@@ -8,12 +9,22 @@ public class Bala : MonoBehaviour
     [SerializeField] float DeathTime = 1f;
 
 
-   /* void Start()
+    private void OnTriggerEnter(Collider other)
     {
-         Destroy(gameObject, 10f);
-    } */
+        if (other.CompareTag("Inimigo")) // Mata o inimigo
+            {
+            other.GetComponent<Inimigo>().Morrer();
+                Destroy(gameObject);
+        }
 
-    void Kill()
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Player>().Derrota();
+            // SceneManager.LoadScene("Derrota");
+        }
+            
+    }
+    void Kill() //Mata a bala depois de certo tempo
     {
         DeathTime += Time.deltaTime;
         if (DeathTime > 6f)
@@ -21,7 +32,7 @@ public class Bala : MonoBehaviour
     }
     void Move()
     {
-        transform.position += Vector3.right *speed * Time.deltaTime; //Move a bala
+        transform.Translate( Vector3.right * speed * Time.deltaTime, Space.Self); //Move a bala
     }
   
 
