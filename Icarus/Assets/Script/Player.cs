@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] Bala[] Tiro = new Bala[1]; //Tiro Instacia
     [SerializeField] GameObject Spawn; //Spawn do tiro
     [SerializeField] float FireRate = 0.1f;
+    [SerializeField] float TrocaCD = 1f;
     bool direcao = true; //Direcao do modo Rapido
     public bool Modo = true; //Define o modo
     float FireTimer = 0f;
+    GameManager GameManager;
 
     private Rigidbody rb;
     private Vector3 moveInput;
@@ -28,12 +30,30 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
         Invoke("VaiproMenu", 1f); //Demora 3 segundos pra mudar a scene
+       GameManager.Pontos = 0; //Reseta os pontos pra zero                     (ATENÇÃO, CASO QUEIRA QUE MOSTRE NOS LEADERBOARDS MUDAR ESSA LINHA)
+       
+    }
+
+    void Ganhar() //Ganha se apertar V
+    {
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            SceneManager.LoadScene("Victory");
+        }
+
+    }
+
+    void TrocaDeformaCD()
+    {
+        TrocaCD += Time.deltaTime;
     }
 
     void VaiproMenu() //Muda a cena pra da de derrota
     {
         SceneManager.LoadScene("Lose");
     }
+
+
 
     void FixedUpdate()
     {
@@ -62,6 +82,7 @@ public class Player : MonoBehaviour
         {
             Modo = !Modo;
         }
+        Ganhar();
     }
 
     void Modoprincipal() //Movimento da Nave no modo principal

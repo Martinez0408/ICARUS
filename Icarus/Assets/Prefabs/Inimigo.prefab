@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1186318082695657775}
   m_Layer: 0
   m_Name: Inimigo
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 12.89, y: 6, z: -5}
   m_LocalScale: {x: 2.3553143, y: 1, z: 1.1488117}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 9061423437862480742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8271096155879602861
@@ -132,7 +133,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
@@ -150,5 +151,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyShot: {fileID: 7025566002365091599, guid: 5a9e1381080346a4a88570d07da5f5dd, type: 3}
-  SpawnEnemy: {fileID: 9154130904049466876, guid: 0fdb5a598415497429d87b0867e2c8d0, type: 3}
+  SpawnEnemy: {fileID: 9061423437862480741}
   ShotFrequency: 5
+  speed: 0.01
+--- !u!1 &9061423437862480741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9061423437862480742}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9061423437862480742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9061423437862480741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -1.64, y: -0.03, z: 0.009}
+  m_LocalScale: {x: 0.4245718, y: 1, z: 0.8704646}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5219535990221024071}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
