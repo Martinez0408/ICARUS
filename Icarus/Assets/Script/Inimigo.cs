@@ -18,6 +18,8 @@ public class Inimigo : MonoBehaviour
     private Vector3 moveInput;
     private Rigidbody rb;
 
+    public Spawns SpawnsManager;
+
 
     void Start()
     {
@@ -48,6 +50,12 @@ public class Inimigo : MonoBehaviour
     {
 
         GameManager.Mestre.AlterarPontois(50);
+
+        if (SpawnsManager != null)
+        {
+        SpawnsManager.InimigoMorreu();
+        }
+
         CancelInvoke();
         gameObject.SetActive(false);
         Invoke("Destruir", 6f);

@@ -17,15 +17,6 @@ public class GameManager : MonoBehaviour
 
     public int Pontos = 0;
 
-    [SerializeField] GameObject inimigoPrefab;
-    [SerializeField] GameObject SpawnPoint;
-    [SerializeField] GameObject[] PrimeiraWave;
-   
-    Vector3 SpawnPosition;
-
-    float SpawnTimer = 0;
-    float SpawnInterval = 5;
-
     private void Awake()
     {
         if (Mestre == null)
@@ -42,7 +33,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       Invoke("SpawnPrimeiraWave", 1f);
+      // Invoke("SpawnPrimeiraWave", 12f);
+      // Invoke("SpawnSegundaWave", 22);
 
         Pontos = 0;
     }
@@ -51,7 +43,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Zawarudo();
-        TimerdosInimigos();
+     //   TimerdosInimigos();
         if (Input.GetKeyDown(KeyCode.B))
         {
             Debug.Log($"Seus pontos são: {Pontos}");
@@ -71,38 +63,7 @@ public class GameManager : MonoBehaviour
     public void AlterarPontois(int pontos)
     {
         Pontos += pontos;
-    }
-
-    
-   
-
-    public void SpawnPrimeiraWave()
-    {
-        for (int i = 0; i < PrimeiraWave.Length; i++)
-        {
-            Instantiate(PrimeiraWave[i], new Vector3(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y, Random.Range(-12, 5)), SpawnPoint.transform.rotation);
-        }
-    }
-
-
-    void TimerdosInimigos()
-    {
-
-
-        SpawnTimer += Time.deltaTime;
-        if (SpawnTimer > SpawnInterval)
-        {
-            SpawnPosition = new Vector3(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y, Random.Range(-12, 5));
-
-           
-            GameObject meuInimigiInstanciado = Instantiate(inimigoPrefab, SpawnPosition, SpawnPoint.transform.rotation);
-           
-            
-            SpawnTimer = 0;
-        }
-    }
-
-    
+    }  
 
 }
 

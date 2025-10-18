@@ -106,7 +106,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -153,7 +153,9 @@ MonoBehaviour:
   EnemyShot: {fileID: 7025566002365091599, guid: 5a9e1381080346a4a88570d07da5f5dd, type: 3}
   SpawnEnemy: {fileID: 9061423437862480741}
   ShotFrequency: 5
-  speed: 0.01
+  GameManager: {fileID: 0}
+  speed: 0.5
+  SpawnsManager: {fileID: 0}
 --- !u!1 &9061423437862480741
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
         Invoke("VaiproMenu", 1f); //Demora 3 segundos pra mudar a scene
-       GameManager.Pontos = 0; //Reseta os pontos pra zero                     (ATENÇÃO, CASO QUEIRA QUE MOSTRE NOS LEADERBOARDS MUDAR ESSA LINHA)
+       GameManager.Mestre.Pontos = 0; //Reseta os pontos pra zero                     (ATENÇÃO, CASO QUEIRA QUE MOSTRE NOS LEADERBOARDS MUDAR ESSA LINHA)
        
     }
 
