@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject Spawn; //Spawn do tiro
     [SerializeField] float FireRate = 0.1f;
     [SerializeField] float TrocaCD = 1f;
+    [SerializeField] float TempoInvencivel = 2f; //DuraÃ§Ã£o da invencibilidade
+   public static bool PlayerVivo = true;
     bool direcao = true; //Direcao do modo Rapido
     public bool Modo = true; //Define o modo
     float FireTimer = 0f;
+    public float TrocaTimer = 0f;
+    public bool invencivel = false; //Define se ele esta invencivel
     GameManager GameManager;
 
     private Rigidbody rb;
@@ -24,13 +29,31 @@ public class Player : MonoBehaviour
     }
 
 
+   void TrocaCDR ()
+    {
+        TrocaTimer += Time.deltaTime;
+
+    }
+
+    IEnumerator TornarInvencivel()
+    {
+        invencivel = true;
+
+        yield return new WaitForSeconds(TempoInvencivel);
+
+        invencivel = false;
+    }
+
 
     public void Derrota() //Oque acontece se o player morrer
 
     {
+        if (invencivel) return; // Se estiver invencivel nao perde
+
         gameObject.SetActive(false);
+        bool PlayerVivo = (false);
         Invoke("VaiproMenu", 1f); //Demora 3 segundos pra mudar a scene
-       GameManager.Pontos = 0; //Reseta os pontos pra zero                     (ATENÇÃO, CASO QUEIRA QUE MOSTRE NOS LEADERBOARDS MUDAR ESSA LINHA)
+        GameManager.Mestre.Pontos = 0; //Reseta os pontos pra zero                     (ATENï¿½ï¿½O, CASO QUEIRA QUE MOSTRE NOS LEADERBOARDS MUDAR ESSA LINHA)
        
     }
 
@@ -43,16 +66,25 @@ public class Player : MonoBehaviour
 
     }
 
-    void TrocaDeformaCD()
-    {
-        TrocaCD += Time.deltaTime;
-    }
 
     void VaiproMenu() //Muda a cena pra da de derrota
     {
         SceneManager.LoadScene("Lose");
     }
 
+    void InputTrocadeformas() //define A troca de formas e sua invencibilidade
+    {
+        TrocaTimer += Time.deltaTime;
+        if (TrocaCD >= TrocaTimer)
+            return;
+        if (Input.GetKeyDown(KeyCode.Space))
+
+        {
+            TrocaTimer = 0;
+            StartCoroutine(TornarInvencivel());
+            Modo = !Modo;
+        }
+    }
 
 
     void FixedUpdate()
@@ -77,11 +109,8 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
-
-        {
-            Modo = !Modo;
-        }
+        InputTrocadeformas();
+        
         Ganhar();
     }
 

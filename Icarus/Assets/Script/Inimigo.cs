@@ -21,7 +21,7 @@ public class Inimigo : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Atirar", FireTimer, ShotFrequency);
+        InvokeRepeating("Atirar", FireTimer, ShotFrequency); //Atira depois de tanto tempo depois repete
         rb = GetComponent<Rigidbody>();
         InvokeRepeating("Move", 0, Time.deltaTime);
 
@@ -40,14 +40,14 @@ public class Inimigo : MonoBehaviour
         GameObject tiro = Instantiate(EnemyShot, SpawnEnemy.transform.position, SpawnEnemy.transform.rotation);
     }
 
-    void Destruir() //apaga o inimigo da cena
+    void Destruir() //Apaga o inimigo da cena
     {
         Destroy(gameObject);
     }
     public void Morrer() // Desativa e depois de um tempo deleta o inimigo
     {
 
-        GameManager.Mestre.AlterarPontois(50);
+        GameManager.Mestre.AlterarPontos(50);
         CancelInvoke();
         gameObject.SetActive(false);
         Invoke("Destruir", 6f);

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tiro
   - Inimigo
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

@@ -150,9 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28522885b63251347ab948cf52026a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyShot: {fileID: 7025566002365091599, guid: 5a9e1381080346a4a88570d07da5f5dd, type: 3}
+  EnemyShot: {fileID: 7025566002365091599, guid: afcc05954f44af44fa3c2cd631e68544, type: 3}
   SpawnEnemy: {fileID: 9061423437862480741}
   ShotFrequency: 5
+  GameManager: {fileID: 6641579684027775142, guid: 01fb9364d41a4f84eaa31b34f908b715, type: 3}
   speed: 0.01
 --- !u!1 &9061423437862480741
 GameObject:
