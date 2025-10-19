@@ -1317,10 +1317,10 @@ MonoBehaviour:
     spawnPosition: {x: 30, y: 2.39, z: 0}
   - prefab: {fileID: 7748453338311996728, guid: 54a4f12039946b24b99b8f1b64828908, type: 3}
     spawnTime: 30
-    spawnPosition: {x: 40, y: 1.79, z: -9.49}
+    spawnPosition: {x: 40, y: 2.39, z: -9.49}
   - prefab: {fileID: 3074325076628875668, guid: 36fc87b6bbda1d14a820f1d1d3f54276, type: 3}
     spawnTime: 65
-    spawnPosition: {x: 40, y: 0, z: -12.79}
+    spawnPosition: {x: 40, y: 2.39, z: -12.79}
 --- !u!4 &591276807
 Transform:
   m_ObjectHideFlags: 0
@@ -4191,7 +4191,7 @@ Transform:
   m_GameObject: {fileID: 2130416421}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 32.31, y: -4.12, z: -2.5}
+  m_LocalPosition: {x: 82.9, y: -4.12, z: -2.5}
   m_LocalScale: {x: 2.2021, y: 2.2021, z: 2.2021}
   m_ConstrainProportionsScale: 0
   m_Children:
