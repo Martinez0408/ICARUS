@@ -1313,13 +1313,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnEvents:
   - prefab: {fileID: 3644761372514936619, guid: 1aa6ab9817ec2fd44a0b831776b09b1d, type: 3}
-    spawnTime: 1
+    spawnTime: 10
     spawnPosition: {x: 30, y: 5, z: -3}
   - prefab: {fileID: 7748453338311996728, guid: 54a4f12039946b24b99b8f1b64828908, type: 3}
-    spawnTime: 1
+    spawnTime: 30
     spawnPosition: {x: 40, y: -2, z: -3}
   - prefab: {fileID: 3074325076628875668, guid: 36fc87b6bbda1d14a820f1d1d3f54276, type: 3}
-    spawnTime: 1
+    spawnTime: 65
     spawnPosition: {x: 40, y: -13, z: -3}
 --- !u!4 &591276807
 Transform:
