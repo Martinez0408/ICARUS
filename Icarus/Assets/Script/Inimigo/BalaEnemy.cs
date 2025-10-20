@@ -22,7 +22,13 @@ public class BalaEnemy : MonoBehaviour
             other.GetComponent<Player>().Derrota();
             // SceneManager.LoadScene("Derrota");
         }
-            
+
+        if (other.CompareTag("Escudo"))
+        {
+            other.GetComponent<Player>().Derrota();
+            // SceneManager.LoadScene("Derrota");
+        }
+
     }
     void KillBalaEnemy() //Mata a bala depois de certo tempo
     {

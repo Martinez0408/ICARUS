@@ -11,7 +11,7 @@ public class Inimigo : MonoBehaviour
     [SerializeField] float ShotFrequency = 10f;
     public GameManager GameManager;
     float FireTimer = 1;
-    float MoveTimer = 0;
+    [SerializeField]float MoveTimer = 0;
 
     [SerializeField] float speed;
 

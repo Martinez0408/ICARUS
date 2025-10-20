@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     Vector3 SpawnPosition;
 
+    public Player Player;
+
     float SpawnTimer = 0;
     float SpawnInterval = 5;
 

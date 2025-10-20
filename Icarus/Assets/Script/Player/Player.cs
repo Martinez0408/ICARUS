@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -23,16 +22,20 @@ public class Player : MonoBehaviour
     public bool invencivel = false; //Define se ele esta invencivel
     GameManager GameManager;
 
+    [SerializeField] GameObject shield;
+
     private Rigidbody rb;
     private Vector3 moveInput;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        //GameManager.Mestre.Player = this;
     }
 
 
-   void TrocaCDR ()
+    void TrocaCDR()
     {
         TrocaTimer += Time.deltaTime;
 
@@ -99,13 +102,15 @@ public class Player : MonoBehaviour
     public void AtivarEscudo()
     {
         temEscudo = true;
-        escudoVisual.SetActive(true);
+        //escudoVisual.SetActive(true);
+
+        shield.SetActive(true);
     }
 
     public void QuebrarEscudo()
     {
         temEscudo = false;
-        escudoVisual.SetActive(false);
+        shield.SetActive(false);
     }
 
 
@@ -131,9 +136,17 @@ public class Player : MonoBehaviour
             ModoRapidoInput();
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            AtivarEscudo();
+        }
 
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            QuebrarEscudo();
+        }
         InputTrocadeformas();
-        
+
         Ganhar();
     }
 
@@ -162,23 +175,24 @@ public class Player : MonoBehaviour
     void Atirar()
     {
         FireTimer += Time.deltaTime;
-        if ((Input.GetMouseButton(0)||(Input.GetKey(KeyCode.K))) && FireTimer >= FireRate)
+        if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.K))) && FireTimer >= FireRate)
 
-        { GameObject novaBala = Instantiate(Tiro[0].gameObject, Spawn.transform.position, Spawn.transform.rotation);
+        {
+            GameObject novaBala = Instantiate(Tiro[0].gameObject, Spawn.transform.position, Spawn.transform.rotation);
 
             FireTimer = 0f;
         }
-        
+
     }
 
 
-   void ModoRapidoMovimento() //Movimento do Modo Rapido
-        {
-            moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
-          Vector3 Posicao = (rb.position + moveInput * speedRapida * Time.fixedDeltaTime);
+    void ModoRapidoMovimento() //Movimento do Modo Rapido
+    {
+        moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
+        Vector3 Posicao = (rb.position + moveInput * speedRapida * Time.fixedDeltaTime);
         Posicao.z = Mathf.Clamp(Posicao.z, -13.5f, 6f);
         rb.MovePosition(Posicao);
-        }
+    }
 
     void ModoRapidoInput() //Controles do Modo Rapido
     {
