@@ -2,7 +2,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Text;
 
 public class Player : MonoBehaviour
 {
@@ -13,8 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] float FireRate = 0.1f;
     [SerializeField] float TrocaCD = 1f;
     [SerializeField] float TempoInvencivel = 2f; //Duração da invencibilidade
-    [SerializeField] GameObject playerModelo1;
-    [SerializeField] GameObject playerModeloForma2;
+    [SerializeField] GameObject escudoVisual; // arraste o círculo azul do player aqui no Inspector
+    public bool temEscudo = false; // controla se o escudo está ativo
+
     public static bool PlayerVivo = true;
     bool direcao = true; //Direcao do modo Rapido
     public bool Modo = true; //Define o modo
@@ -48,17 +48,23 @@ public class Player : MonoBehaviour
     }
 
 
-    public void Derrota() //Oque acontece se o player morrer
-
+    public void Derrota()
     {
-        if (invencivel) return; // Se estiver invencivel nao perde
+        if (invencivel) return;
+
+        // Se tiver escudo, quebra ele e cancela o dano
+        if (temEscudo)
+        {
+            QuebrarEscudo();
+            return;
+        }
 
         gameObject.SetActive(false);
-        bool PlayerVivo = (false);
-        Invoke("VaiproMenu", 1f); //Demora 3 segundos pra mudar a scene
-        GameManager.Mestre.Pontos = 0; //Reseta os pontos pra zero                     (ATEN��O, CASO QUEIRA QUE MOSTRE NOS LEADERBOARDS MUDAR ESSA LINHA)
-       
+        PlayerVivo = false;
+        Invoke("VaiproMenu", 1f);
+        GameManager.Mestre.Pontos = 0;
     }
+
 
     void Ganhar() //Ganha se apertar V
     {
@@ -90,6 +96,20 @@ public class Player : MonoBehaviour
     }
 
 
+    public void AtivarEscudo()
+    {
+        temEscudo = true;
+        escudoVisual.SetActive(true);
+    }
+
+    public void QuebrarEscudo()
+    {
+        temEscudo = false;
+        escudoVisual.SetActive(false);
+    }
+
+
+
     void FixedUpdate()
     {
         if (Modo == true)
@@ -119,9 +139,6 @@ public class Player : MonoBehaviour
 
     void Modoprincipal() //Movimento da Nave no modo principal
     {
-        playerModeloForma2.SetActive(false);
-        playerModelo1.SetActive(true);
-        transform.rotation = Quaternion.Euler(0, 0, 0); // normaliza a rotaçao
         float MoveZ = 0f;
         float MoveX = 0f;
         {
@@ -157,9 +174,7 @@ public class Player : MonoBehaviour
 
    void ModoRapidoMovimento() //Movimento do Modo Rapido
         {
-        playerModeloForma2.SetActive(true); // Muda os modelos
-        playerModelo1.SetActive(false);
-        moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
+            moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
           Vector3 Posicao = (rb.position + moveInput * speedRapida * Time.fixedDeltaTime);
         Posicao.z = Mathf.Clamp(Posicao.z, -13.5f, 6f);
         rb.MovePosition(Posicao);
@@ -167,10 +182,7 @@ public class Player : MonoBehaviour
 
     void ModoRapidoInput() //Controles do Modo Rapido
     {
-        if (direcao == true) //Gira o modelo
-            transform.rotation = Quaternion.Euler(0, -35, 0);
-        else
-            transform.rotation = Quaternion.Euler(0, 35, 0);
+
         if (Input.GetMouseButtonDown(0))
         {
             direcao = !direcao;
