@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Text;
 
 public class Player : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField] float FireRate = 0.1f;
     [SerializeField] float TrocaCD = 1f;
     [SerializeField] float TempoInvencivel = 2f; //Duração da invencibilidade
-   public static bool PlayerVivo = true;
+    [SerializeField] GameObject playerModelo1;
+    [SerializeField] GameObject playerModeloForma2;
+    public static bool PlayerVivo = true;
     bool direcao = true; //Direcao do modo Rapido
     public bool Modo = true; //Define o modo
     float FireTimer = 0f;
@@ -116,6 +119,9 @@ public class Player : MonoBehaviour
 
     void Modoprincipal() //Movimento da Nave no modo principal
     {
+        playerModeloForma2.SetActive(false);
+        playerModelo1.SetActive(true);
+        transform.rotation = Quaternion.Euler(0, 0, 0); // normaliza a rotaçao
         float MoveZ = 0f;
         float MoveX = 0f;
         {
@@ -151,7 +157,9 @@ public class Player : MonoBehaviour
 
    void ModoRapidoMovimento() //Movimento do Modo Rapido
         {
-            moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
+        playerModeloForma2.SetActive(true); // Muda os modelos
+        playerModelo1.SetActive(false);
+        moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
           Vector3 Posicao = (rb.position + moveInput * speedRapida * Time.fixedDeltaTime);
         Posicao.z = Mathf.Clamp(Posicao.z, -13.5f, 6f);
         rb.MovePosition(Posicao);
@@ -159,7 +167,10 @@ public class Player : MonoBehaviour
 
     void ModoRapidoInput() //Controles do Modo Rapido
     {
-
+        if (direcao == true) //Gira o modelo
+            transform.rotation = Quaternion.Euler(0, -35, 0);
+        else
+            transform.rotation = Quaternion.Euler(0, 35, 0);
         if (Input.GetMouseButtonDown(0))
         {
             direcao = !direcao;

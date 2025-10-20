@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6827748765406746035}
   - component: {fileID: 5297892832757507714}
   - component: {fileID: 1496448601809004789}
-  - component: {fileID: 4700728010307310827}
+  - component: {fileID: -1157566993752303406}
   m_Layer: 0
   m_Name: Tiro Enemy
-  m_TagString: Tiro
+  m_TagString: TIroEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4700728010307310827
+--- !u!114 &-1157566993752303406
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,8 +118,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7025566002365091599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608c94c707cc8f84cb1df4b5bf471ec0, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d295b3421f5b6540ad931830ebb7a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 19
-  DeathTime: 0
+  speedEnemy: 19
+  DeathTimeEnemy: 0

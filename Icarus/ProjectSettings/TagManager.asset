@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Tiro
   - Inimigo
   - SpawnPoint
+  - TIroEnemy
+  - TiroAlly
   layers:
   - Default
   - TransparentFX
