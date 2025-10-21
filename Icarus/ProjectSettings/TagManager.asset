@@ -8,6 +8,7 @@ TagManager:
   - SpawnPoint
   - TIroEnemy
   - TiroAlly
+  - Escudo
   layers:
   - Default
   - TransparentFX
