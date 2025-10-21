@@ -31,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16, y: 6, z: -5}
-  m_LocalScale: {x: 3.271296, y: 3.271296, z: 1.595585}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.9200003, y: 2.9200003, z: 1.4242392}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1157402797025866086}
   - {fileID: 9061423437862480742}
@@ -106,7 +106,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -134,7 +134,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
@@ -154,8 +154,11 @@ MonoBehaviour:
   EnemyShot: {fileID: 7025566002365091599, guid: afcc05954f44af44fa3c2cd631e68544, type: 3}
   SpawnEnemy: {fileID: 9061423437862480741}
   ShotFrequency: 2
+  MoveTimer: 0
+  speedInimigo: 2
+  timerMove: 0
+  tempoMovimento: 3
   GameManager: {fileID: 6641579684027775142, guid: 01fb9364d41a4f84eaa31b34f908b715, type: 3}
-  speed: 0.01
 --- !u!1 &9061423437862480741
 GameObject:
   m_ObjectHideFlags: 0

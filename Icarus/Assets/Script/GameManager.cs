@@ -1,9 +1,9 @@
 using NUnit.Framework;
+using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine.SceneManagement; // necessário para sceneLoaded
 
 public class GameManager : MonoBehaviour
@@ -16,15 +16,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject inimigoPrefab;
     [SerializeField] GameObject SpawnPoint;
-    [SerializeField] GameObject[] PrimeiraWave;
-
+    [SerializeField] GameObject[] Wave;
+    [SerializeField] float SpawnInterval = 5;
     Vector3 SpawnPosition;
 
     public Player Player;
 
     float SpawnTimer = 0;
-    float SpawnInterval = 5;
-
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded; // Atualiza SpawnPoint ao carregar cena
@@ -56,8 +54,29 @@ public class GameManager : MonoBehaviour
         // Tenta pegar SpawnPoint da cena inicial (caso exista)
         EncontrarSpawnPoint();
     }
+    private void Start()
+    {
+        //InvokeRepeating("SpawnWave", 1f, 8f); //invoca as waves repetidamente SiSTEMA ANTIGO DE WAVE
+        Pontos = 0;
+    }
 
-    void EncontrarSpawnPoint()
+  
+    void Update()
+    {
+        Zawarudo();
+        SpawnInimigos();
+        if (Input.GetKeyDown(KeyCode.B)) // mostra seus pontos
+        {
+            Debug.Log($"Seus pontos sao: {Pontos}");
+        }
+
+        if (Player.PlayerVivo == false)
+        {
+            CancelInvoke();
+        }
+    }
+
+    void EncontrarSpawnPoint() // Acha o SpawnPoint Do inimigo
     {
         if (SpawnPoint == null)
         {
@@ -67,27 +86,6 @@ public class GameManager : MonoBehaviour
             {
                 DontDestroyOnLoad(SpawnPoint);
             }
-        }
-    }
-
-    private void Start()
-    {
-        InvokeRepeating("SpawnPrimeiraWave", 1f, 8f); //invoca as waves repetidamente
-        Pontos = 0;
-    }
-
-    void Update()
-    {
-        Zawarudo();
-        TimerdosInimigos();
-        if (Input.GetKeyDown(KeyCode.B)) // mostra seus pontos
-        {
-            Debug.Log($"Seus pontos sao: {Pontos}");
-        }
-
-        if (Player.PlayerVivo == false)
-        {
-            CancelInvoke();
         }
     }
 
@@ -104,29 +102,7 @@ public class GameManager : MonoBehaviour
         Pontos += pontos;
     }
 
-    public void SpawnPrimeiraWave()
-    {
-        EncontrarSpawnPoint(); // garante que o SpawnPoint está definido
-
-        if (SpawnPoint == null)
-        {
-            Debug.LogWarning("SpawnPoint não definido. Não é possível spawnar a wave.");
-            return;
-        }
-
-        for (int i = 0; i < PrimeiraWave.Length; i++)
-        {
-            Vector3 pos = new Vector3(
-                SpawnPoint.transform.position.x,
-                SpawnPoint.transform.position.y,
-                Random.Range(-12, 5)
-            );
-
-            Instantiate(PrimeiraWave[i], pos, SpawnPoint.transform.rotation);
-        }
-    }
-
-    void TimerdosInimigos()
+    void SpawnInimigos ()
     {
         EncontrarSpawnPoint(); // garante que o SpawnPoint está definido
 
@@ -139,11 +115,56 @@ public class GameManager : MonoBehaviour
                 SpawnPoint.transform.position.x,
                 SpawnPoint.transform.position.y,
                 Random.Range(-12, 5)
-            );
-
+                );
             Instantiate(inimigoPrefab, SpawnPosition, SpawnPoint.transform.rotation);
-
-            SpawnTimer = 0;
+            SpawnTimer = 0f;
         }
     }
+
+    /*public void SpawnWave(float raioSpawnSeguro) SISTEMA ANTIGO DE WAVE
+    {
+        EncontrarSpawnPoint(); // garante que o SpawnPoint está definido
+
+        raioSpawnSeguro = 10f;
+
+        if (SpawnPoint == null)
+        {
+            Debug.LogWarning("SpawnPoint não definido. Não é possível spawnar a wave.");
+            return;
+        }
+
+        for (int i = 0; i < Wave.Length; i++)
+        {
+            Vector3 posicao;
+            bool posValida;
+
+            int tentativas = 0;
+            do
+            {
+                posicao = new Vector3(
+                    SpawnPoint.transform.position.x,
+                    SpawnPoint.transform.position.y,
+                    Random.Range(-12, 5)
+                );
+
+                // verifica se tem algum inimigo nessa área
+                Collider[] colisores = Physics.OverlapSphere(posicao, raioSpawnSeguro);
+                posValida = colisores.Length == 0;
+
+                tentativas++;
+                if (tentativas > 10) break; // evita loop infinito
+            }
+            while (!posValida);
+
+            if (posValida)
+                Instantiate(Wave[i], posicao, SpawnPoint.transform.rotation);
+
+        }*/
+
+
+
+
+
+
+
 }
