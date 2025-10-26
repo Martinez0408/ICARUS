@@ -4,8 +4,8 @@ using System.Collections;
 public class PowerUpSpawner : MonoBehaviour
 {
     [SerializeField] GameObject powerUpPrefab; // O prefab do power-up 
-    [SerializeField] Vector3 areaMin = new Vector3(-20f, 0f, -10f); // Limite mínimo do spawn
-    [SerializeField] Vector3 areaMax = new Vector3(20f, 0f, 10f);  // Limite máximo do spawn
+    [SerializeField] Vector3 areaMin = new Vector3(-20f, 0f, -10f); // Limite mï¿½nimo do spawn
+    [SerializeField] Vector3 areaMax = new Vector3(20f, 0f, 10f);  // Limite mï¿½ximo do spawn
     [SerializeField] float tempoSpawn = 40f; // Tempo fixo entre cada spawn
 
     void Start()

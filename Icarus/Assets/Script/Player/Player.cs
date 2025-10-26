@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] float TempoInvencivel = 2f; //Duração da invencibilidade
     [SerializeField] GameObject escudoVisual; // arraste o círculo azul do player aqui no Inspector
     public bool temEscudo = false; // controla se o escudo está ativo
-
+    float anguloRapido = 35f;
+    bool direcaoangulo = false;
     public static bool PlayerVivo = true;
     bool direcao = true; //Direcao do modo Rapido
     public bool Modo = true; //Define o modo
@@ -74,7 +75,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V))
         {
             SceneManager.LoadScene("Victory");
+            GameManager.Mestre.Pontos = 0;
         }
+
 
     }
 
@@ -152,6 +155,7 @@ public class Player : MonoBehaviour
 
     void Modoprincipal() //Movimento da Nave no modo principal
     {
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         float MoveZ = 0f;
         float MoveX = 0f;
         {
@@ -188,6 +192,7 @@ public class Player : MonoBehaviour
 
     void ModoRapidoMovimento() //Movimento do Modo Rapido
     {
+        transform.rotation = Quaternion.Euler(0f, anguloRapido, 0f);
         moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
         Vector3 Posicao = (rb.position + moveInput * speedRapida * Time.fixedDeltaTime);
         Posicao.z = Mathf.Clamp(Posicao.z, -13.5f, 6f);
@@ -196,15 +201,27 @@ public class Player : MonoBehaviour
 
     void ModoRapidoInput() //Controles do Modo Rapido
     {
-
+        if (direcaoangulo == true)
+            {
+            anguloRapido = 35f;
+           
+        }
+        else
+        {
+            anguloRapido = -35f;
+        }
         if (Input.GetMouseButtonDown(0))
         {
+            transform.rotation = Quaternion.Euler(0f, anguloRapido, 0f);
             direcao = !direcao;
+            direcaoangulo = !direcaoangulo;
         }
 
         if (Input.GetMouseButtonDown(1))
         {
+            transform.rotation = Quaternion.Euler(0f, anguloRapido, 0f);
             direcao = !direcao;
+            direcaoangulo = !direcaoangulo;
         }
     }
 
