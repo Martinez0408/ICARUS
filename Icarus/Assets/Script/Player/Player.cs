@@ -178,7 +178,12 @@ public class Player : MonoBehaviour
 
     void Atirar()
     {
-        FireTimer += Time.deltaTime;
+        if (GetComponent<TimeBody>().isrewinding == true)
+        {
+            return;
+        }
+        else { 
+            FireTimer += Time.deltaTime;
         if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.K))) && FireTimer >= FireRate)
 
         {
@@ -186,7 +191,7 @@ public class Player : MonoBehaviour
 
             FireTimer = 0f;
         }
-
+        }
     }
 
 

@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         Zawarudo();
         SpawnInimigos();
-        if (Input.GetKeyDown(KeyCode.B)) // mostra seus pontos
+        if (Input.GetKeyDown(KeyCode.L)) // mostra seus pontos
         {
             Debug.Log($"Seus pontos sao: {Pontos}");
         }

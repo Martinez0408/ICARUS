@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5297892832757507714}
   - component: {fileID: 1496448601809004789}
   - component: {fileID: -1157566993752303406}
+  - component: {fileID: -7684649401819626606}
   m_Layer: 0
   m_Name: Tiro Enemy
   m_TagString: TIroEnemy
@@ -123,3 +124,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedEnemy: 19
   DeathTimeEnemy: 0
+--- !u!114 &-7684649401819626606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025566002365091599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beffbef7a27e4304b80a978113944c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

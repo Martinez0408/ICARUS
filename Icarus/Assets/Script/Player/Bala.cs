@@ -11,6 +11,10 @@ public class Bala : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GetComponent<TimeBody>().isrewinding == true)
+        {
+            return;
+        }
         if (other.CompareTag("Inimigo")) // Mata o inimigo
             {
             other.GetComponent<Inimigo>().Morrer();

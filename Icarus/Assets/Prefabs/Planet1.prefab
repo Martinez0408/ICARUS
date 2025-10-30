@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6671166606835105649}
   - component: {fileID: 5669998581823989327}
   - component: {fileID: -1698721390042348224}
+  - component: {fileID: -7177904296876837454}
   m_Layer: 0
   m_Name: Planet1
   m_TagString: Untagged
@@ -116,3 +117,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 2
+--- !u!114 &-7177904296876837454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748453338311996728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beffbef7a27e4304b80a978113944c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isrewinding: 0

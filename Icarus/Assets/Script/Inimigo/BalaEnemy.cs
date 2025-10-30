@@ -12,7 +12,7 @@ public class BalaEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Inimigo")) // Mata o inimigo
+        if (other.CompareTag("Inimigo") || GetComponent<TimeBody>().isrewinding == true) // Mata o inimigo
             {
             return;
         }

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4909994710665672061}
   - component: {fileID: 1378180480481076438}
   - component: {fileID: 1007489902326412197}
+  - component: {fileID: -5065511383582617528}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -164,11 +165,12 @@ MonoBehaviour:
   FireRate: 0.2
   TrocaCD: 1
   TempoInvencivel: 2
-  playerModelo1: {fileID: 3601279832392731835}
-  playerModeloForma2: {fileID: 2516582014286538715}
+  escudoVisual: {fileID: 0}
+  temEscudo: 0
   Modo: 1
   TrocaTimer: 0
   invencivel: 0
+  shield: {fileID: 0}
 --- !u!54 &1007489902326412197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -196,6 +198,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &-5065511383582617528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8779987202977333005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beffbef7a27e4304b80a978113944c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3327557402565450378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -265,11 +279,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 112d8d80cc898444088e837ea765ad43, type: 3}
---- !u!1 &2516582014286538715 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 112d8d80cc898444088e837ea765ad43, type: 3}
-  m_PrefabInstance: {fileID: 3327557402565450378}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3001476179000556897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 112d8d80cc898444088e837ea765ad43, type: 3}
@@ -348,11 +357,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1e06e9883bac72418f8b41138bfe89e, type: 3}
---- !u!1 &3601279832392731835 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a1e06e9883bac72418f8b41138bfe89e, type: 3}
-  m_PrefabInstance: {fileID: 4412183192996491754}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4229302544964015617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a1e06e9883bac72418f8b41138bfe89e, type: 3}

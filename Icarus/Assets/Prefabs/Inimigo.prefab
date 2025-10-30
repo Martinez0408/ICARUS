@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8223026063595248223}
   - component: {fileID: 9061423437862480740}
   - component: {fileID: -1186318082695657775}
+  - component: {fileID: 356344532862149923}
   m_Layer: 0
   m_Name: Inimigo
   m_TagString: Inimigo
@@ -159,6 +160,18 @@ MonoBehaviour:
   timerMove: 0
   tempoMovimento: 3
   GameManager: {fileID: 6641579684027775142, guid: 01fb9364d41a4f84eaa31b34f908b715, type: 3}
+--- !u!114 &356344532862149923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4124394402925275042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beffbef7a27e4304b80a978113944c47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9061423437862480741
 GameObject:
   m_ObjectHideFlags: 0

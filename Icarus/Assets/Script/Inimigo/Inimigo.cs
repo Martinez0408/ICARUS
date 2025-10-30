@@ -50,7 +50,14 @@ public class Inimigo : MonoBehaviour
 
     void Atirar()
     {
-        GameObject tiro = Instantiate(EnemyShot, SpawnEnemy.transform.position, SpawnEnemy.transform.rotation);
+        if (GetComponent<TimeBody>().isrewinding == true)
+        {
+            return;
+        }
+        else
+        {
+            GameObject tiro = Instantiate(EnemyShot, SpawnEnemy.transform.position, SpawnEnemy.transform.rotation);
+        }
     }
 
     void Destruir() //Apaga o inimigo da cena
