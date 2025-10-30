@@ -21,6 +21,12 @@ public class Player : MonoBehaviour
     float FireTimer = 0f;
     public float TrocaTimer = 0f;
     public bool invencivel = false; //Define se ele esta invencivel
+
+    // --- Variáveis da Inclinação (Tilt) ---
+    public float MaxtiltAngle = 15f; // O ângulo máximo que a nave vai inclinar
+    public float tiltspeed = 7f;     // A velocidade que ela inclina/desinclina
+                                     
+
     GameManager GameManager;
 
     [SerializeField] GameObject shield;
@@ -77,8 +83,6 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("Victory");
             GameManager.Mestre.Pontos = 0;
         }
-
-
     }
 
 
@@ -121,20 +125,16 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         if (Modo == true)
-
         {
             Modoprincipal();
             Atirar();
         }
-
         else ModoRapidoMovimento();
-
     }
 
     void Update()
     {
         if (Modo == false)
-
         {
             ModoRapidoInput();
         }
@@ -155,26 +155,43 @@ public class Player : MonoBehaviour
 
     void Modoprincipal() //Movimento da Nave no modo principal
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         float MoveZ = 0f;
         float MoveX = 0f;
         {
-            if (Input.GetKey(KeyCode.W)) MoveZ = 1f; ;
-            if (Input.GetKey(KeyCode.A)) MoveX = -1f; ;
-            if (Input.GetKey(KeyCode.S)) MoveZ = -1f; ;
-            if (Input.GetKey(KeyCode.D)) MoveX = 1f; ;
+            if (Input.GetKey(KeyCode.A)) MoveZ = 1f; ;
+            if (Input.GetKey(KeyCode.S)) MoveX = -1f; ; // <-- Input horizontal
+            if (Input.GetKey(KeyCode.D)) MoveZ = -1f; ;
+            if (Input.GetKey(KeyCode.W)) MoveX = 1f; ;  // <-- Input horizontal
 
             moveInput = new Vector3(MoveX, 0f, MoveZ);
 
             Vector3 Limite = (rb.position + moveInput * speedPrincipal * Time.fixedDeltaTime);
             Limite.z = Mathf.Clamp(Limite.z, -13.5f, 6f);
-            Limite.x = Mathf.Clamp(Limite.x, -22f, 22f);
+            Limite.x = Mathf.Clamp(Limite.x, -24f, 22f);
             rb.MovePosition(Limite);
 
-
-
+            
+            ApplyTilt(MoveZ);
         }
     }
+
+
+    private void ApplyTilt(float horizontalInput)
+    {
+
+        float targetTiltX = horizontalInput * MaxtiltAngle;
+
+
+        float smoothedTiltX = Mathf.LerpAngle(
+            transform.eulerAngles.x,   // Rotação X atual
+            targetTiltX,               // Rotação X alvo
+            tiltspeed * Time.fixedDeltaTime // Velocidade
+        );
+
+
+        transform.rotation = Quaternion.Euler(smoothedTiltX, 0f, 0f);
+    }
+
 
     void Atirar()
     {
@@ -182,22 +199,25 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        else { 
-            FireTimer += Time.deltaTime;
-        if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.K))) && FireTimer >= FireRate)
-
+        else
         {
-            GameObject novaBala = Instantiate(Tiro[0].gameObject, Spawn.transform.position, Spawn.transform.rotation);
+            FireTimer += Time.deltaTime;
+            if ((Input.GetMouseButton(0) || (Input.GetKey(KeyCode.K))) && FireTimer >= FireRate)
 
-            FireTimer = 0f;
-        }
+            {
+                GameObject novaBala = Instantiate(Tiro[0].gameObject, Spawn.transform.position, Spawn.transform.rotation);
+
+                FireTimer = 0f;
+            }
         }
     }
 
 
     void ModoRapidoMovimento() //Movimento do Modo Rapido
     {
+        // Esta linha força a rotação, o que zera a inclinação (o que é bom para a troca de modo)
         transform.rotation = Quaternion.Euler(0f, anguloRapido, 0f);
+
         moveInput = direcao ? new Vector3(0, 0, 1f) : new Vector3(0, 0, -1f);
         Vector3 Posicao = (rb.position + moveInput * speedRapida * Time.fixedDeltaTime);
         Posicao.z = Mathf.Clamp(Posicao.z, -13.5f, 6f);
@@ -207,9 +227,9 @@ public class Player : MonoBehaviour
     void ModoRapidoInput() //Controles do Modo Rapido
     {
         if (direcaoangulo == true)
-            {
+        {
             anguloRapido = 35f;
-           
+
         }
         else
         {
@@ -229,7 +249,4 @@ public class Player : MonoBehaviour
             direcaoangulo = !direcaoangulo;
         }
     }
-
-
 }
-

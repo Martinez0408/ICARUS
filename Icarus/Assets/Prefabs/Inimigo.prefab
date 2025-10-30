@@ -156,9 +156,9 @@ MonoBehaviour:
   SpawnEnemy: {fileID: 9061423437862480741}
   ShotFrequency: 2
   MoveTimer: 0
-  speedInimigo: 1
+  speedInimigo: 2.3
   timerMove: 0
-  tempoMovimento: 3
+  tempoMovimento: 7
   GameManager: {fileID: 6641579684027775142, guid: 01fb9364d41a4f84eaa31b34f908b715, type: 3}
 --- !u!114 &356344532862149923
 MonoBehaviour:
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beffbef7a27e4304b80a978113944c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isrewinding: 0
 --- !u!1 &9061423437862480741
 GameObject:
   m_ObjectHideFlags: 0
