@@ -21,6 +21,18 @@ public class Bala : MonoBehaviour
                 Destroy(gameObject);
         }
 
+        if (other.CompareTag("InimigoMelee")) // Mata o inimigo
+            {
+            other.GetComponent<InimigoMelee>().Morrer();
+                Destroy(gameObject);
+        }
+
+        if (other.CompareTag("InimigoLaser")) // Mata o inimigo
+            {
+            other.GetComponent<InimigoLaser>().Morrer();
+                Destroy(gameObject);
+            }
+
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().Derrota();

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Inimigo : MonoBehaviour
+
 {
 
     [SerializeField] GameObject EnemyShot; //Prefab do tiro do Inimigo
