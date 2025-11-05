@@ -14,6 +14,10 @@ public class InimigoLaser : MonoBehaviour
     [SerializeField] float timerMove = 0f;
     [SerializeField] bool movendo = true;
 
+    [Header("Status")]
+    [SerializeField] private float vidaMax = 6f; // Vida máxima
+    private float vidaAtual;
+
     
      private GameObject laserAtual;
 
@@ -26,6 +30,7 @@ public class InimigoLaser : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         InvokeRepeating(nameof(AtirarLaser), 2f, intervaloTiro);
+         vidaAtual = vidaMax;
     }
 
    void FixedUpdate()
@@ -82,6 +87,16 @@ public class InimigoLaser : MonoBehaviour
         novaPos.x = Mathf.Clamp(novaPos.x, -22f, 0f);
 
         rb.MovePosition(novaPos);
+    }
+
+    public void LevarDano(float dano)
+    {
+        vidaAtual -= dano;
+
+        if (vidaAtual <= 0f)
+        {
+            Morrer();
+        }
     }
 
     public void Morrer()

@@ -13,6 +13,10 @@ public class InimigoMelee : MonoBehaviour
 
     [SerializeField] bool movendo = true;
 
+    [Header("Status")]
+    [SerializeField] private float vidaMax = 3f; // Vida máxima
+    private float vidaAtual;
+
     private Rigidbody rb;
     private bool dash = false;
     private bool atacou = false;
@@ -23,6 +27,7 @@ public class InimigoMelee : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Invoke("Dash",2);
+         vidaAtual = vidaMax;
     }
 
     void FixedUpdate()
@@ -80,9 +85,19 @@ void Update()
     // Se o inimigo sair muito da tela (por exemplo, para a esquerda ou para baixo), ele morre
     if (transform.position.x < -30f || transform.position.z < -20f || transform.position.z > 10f)
     {
-        Morrer();
+        MorrerFora();
     }
 }
+
+public void LevarDano(float dano)
+    {
+        vidaAtual -= dano;
+
+        if (vidaAtual <= 0f)
+        {
+            Morrer();
+        }
+    }
 
     public void Morrer()
     {
@@ -91,6 +106,15 @@ void Update()
         {
             GameManager.Mestre.AlterarPontos(75); // recompensa diferente do inimigo normal
         }
+
+        CancelInvoke(); // caso tenha algo invocado (segurança)
+        gameObject.SetActive(false);
+        Invoke("Destruir", tempoMorte);
+    }
+
+     public void MorrerFora()
+    {
+       
 
         CancelInvoke(); // caso tenha algo invocado (segurança)
         gameObject.SetActive(false);

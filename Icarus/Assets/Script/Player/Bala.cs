@@ -5,6 +5,7 @@ public class Bala : MonoBehaviour
 
     
 {
+    [SerializeField] float dano = 1f;
     [SerializeField] float speed = 10f;
     [SerializeField] float DeathTime = 1f;
 
@@ -17,19 +18,19 @@ public class Bala : MonoBehaviour
         }
         if (other.CompareTag("Inimigo")) // Mata o inimigo
             {
-            other.GetComponent<Inimigo>().Morrer();
+            other.GetComponent<Inimigo>().LevarDano(1);
                 Destroy(gameObject);
         }
 
         if (other.CompareTag("InimigoMelee")) // Mata o inimigo
             {
-            other.GetComponent<InimigoMelee>().Morrer();
+            other.GetComponent<InimigoMelee>().LevarDano(1);
                 Destroy(gameObject);
         }
 
         if (other.CompareTag("InimigoLaser")) // Mata o inimigo
             {
-            other.GetComponent<InimigoLaser>().Morrer();
+            other.GetComponent<InimigoLaser>().LevarDano(1);
                 Destroy(gameObject);
             }
 

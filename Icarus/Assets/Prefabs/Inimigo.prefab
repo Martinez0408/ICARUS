@@ -159,7 +159,11 @@ MonoBehaviour:
   speedInimigo: 2.3
   timerMove: 0
   tempoMovimento: 7
+  vidaMax: 2
   GameManager: {fileID: 6641579684027775142, guid: 01fb9364d41a4f84eaa31b34f908b715, type: 3}
+  renderers: []
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.5
 --- !u!114 &356344532862149923
 MonoBehaviour:
   m_ObjectHideFlags: 0
